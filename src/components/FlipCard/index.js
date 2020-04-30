@@ -1,44 +1,26 @@
-import React from "react"
+import React from "react";
+import { graphql, useStaticQuery } from "gatsby";
+import BackgroundImage from "gatsby-background-image";
 
-import Text from "../Text"
+import Text from "../Text";
+import flipCardStyles from "./styles";
 
 const FlipCard = () => {
-  const flipCardStyles = {
-    container: {
-      position: "relative",
-      width: 250,
-      height: 350,
-      borderRadius: 20,
-      backgroundColor: "grey",
-      overflow: "hidden",
-      boxShadow: "0 10px 30px -10px #0f2027",
-      //TODO change color to created const
-    },
-    text: {
-      position: "absolute",
-      bottom: 0,
-      right: 0,
-      left: 0,
-      color: "white",
-      textAlign: "right",
-      display: "flex",
-      flexDirection: "column",
-      backgroundImage:
-        "linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7) 50%)",
-      padding: 15,
-
-      title: {
-        marginBottom: 0,
-      },
-      subtitle: {
-        fontSize: "0.8rem",
-        opacity: "0.6",
-      },
-    },
-  }
+  //TODO export thi query under component
+  const data = useStaticQuery(graphql`
+    query {
+      beach: file(relativePath: { eq: "beach.jpg" }) {
+        childImageSharp {
+          fluid(quality: 100, maxWidth: 600) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  `);
 
   return (
-    <div style={flipCardStyles.container}>
+    <BackgroundImage style={flipCardStyles.container} fluid={data.beach.childImageSharp.fluid}>
       <div style={flipCardStyles.text}>
         <Text variant={"h3"} styles={flipCardStyles.text.title}>
           Bornholm
@@ -47,7 +29,7 @@ const FlipCard = () => {
           Porady
         </Text>
       </div>
-    </div>
+    </BackgroundImage>
   )
 }
 
