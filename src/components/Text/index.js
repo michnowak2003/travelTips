@@ -1,35 +1,26 @@
 import React from "react"
 
-const Text = ({ variant, children, styles }) => {
+const Text = ({ variant, children, className }) => {
 
   switch (variant) {
     case "h1":
-      return <h1 style={styles}>{children}</h1>
-      break
+      return <h1 className={className}>{children}</h1>;
     case "h2":
-      return <h2 style={styles}>{children}</h2>
-      break
+      return <h2 className={className}>{children}</h2>;
     case "h3":
-      return <h3 style={styles}>{children}</h3>
-      break
+      return <h3 className={className}>{children}</h3>;
     case "h4":
-      return <h4 style={styles}>{children}</h4>
-      break
+      return <h4 className={className}>{children}</h4>;
     case "h5":
-      return <h5 style={styles}>{children}</h5>
-      break
+      return <h5 className={className}>{children}</h5>;
     case "h6":
-      return <h6 style={styles}>{children}</h6>
-      break
+      return <h6 className={className}>{children}</h6>;
     case "span":
-      return <span style={styles}>{children}</span>
-      break
+      return <span className={className}>{children}</span>;
     case "p":
-      return <p style={styles}>{children}</p>
-      break
+      return <p className={className}>{children}</p>;
     default:
-      return <span style={styles}>{children}</span>
-      break
+      return <span className={className}>{children}</span>;
   }
 }
 

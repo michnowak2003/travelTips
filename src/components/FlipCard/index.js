@@ -3,11 +3,11 @@ import { graphql, useStaticQuery } from "gatsby";
 import BackgroundImage from "gatsby-background-image";
 
 import Text from "../Text";
-import flipCardStyles from "./styles";
+import "./styles.scss";
 
-const FlipCard = () => {
+const FlipCard = ({ destinations }) => {
   //TODO export thi query under component
-  const data = useStaticQuery(graphql`
+  const queryPage = useStaticQuery(graphql`
     query {
       beach: file(relativePath: { eq: "beach.jpg" }) {
         childImageSharp {
@@ -19,18 +19,39 @@ const FlipCard = () => {
     }
   `);
 
-  return (
-    <BackgroundImage style={flipCardStyles.container} fluid={data.beach.childImageSharp.fluid}>
-      <div style={flipCardStyles.text}>
-        <Text variant={"h3"} styles={flipCardStyles.text.title}>
-          Bornholm
-        </Text>
-        <Text variant={"span"} styles={flipCardStyles.text.subtitle}>
-          Porady
-        </Text>
+  const showInfoList = info => (
+    <div className="card__back__content__info">
+      <ul className="card__back__content__info__list">
+        {info.map(element => (
+          <li className="card__back__content__list__listItem">{element.name}</li>
+        ))}
+      </ul>
+    </div>
+  );
+
+  return destinations.map(destination =>
+    <div className="card">
+      <div className="card__front">
+        <BackgroundImage className="card__front__content" fluid={queryPage.beach.childImageSharp.fluid}>
+          <div className="card__front__content__text">
+            <Text variant={"h3"} className="card__front__content__text--title">
+              {destination.title}
+            </Text>
+            <Text variant={"span"} className="card__front__content__text--subtitle">
+              {destination.type}
+            </Text>
+          </div>
+        </BackgroundImage>
       </div>
-    </BackgroundImage>
-  )
-}
+      <div className="card__back">
+        <div className="card__back__content">
+          <div className="card__back__content__title">{destination.title}</div>
+          <div className="card__back__content__subtitle">{destination.type}</div>
+          {destination.info && (showInfoList(destination.info))}
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default FlipCard
