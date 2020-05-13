@@ -1,5 +1,5 @@
 import React from "react";
-import { graphql, useStaticQuery } from "gatsby";
+import { graphql, useStaticQuery, Link } from "gatsby";
 import BackgroundImage from "gatsby-background-image";
 
 import Text from "../Text";
@@ -48,7 +48,7 @@ const FlipCard = ({ destinations }) => {
           <div className="card__back__content__title">{destination.title}</div>
           <div className="card__back__content__subtitle">{destination.type}</div>
           {destination.info && (showInfoList(destination.info))}
-          <button className="card__back__content__button">Szczegóły</button>
+          <Link to="/page-2" className="card__back__content__button">Szczegóły</Link>
         </div>
       </div>
     </div>
