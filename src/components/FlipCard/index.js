@@ -48,6 +48,7 @@ const FlipCard = ({ destinations }) => {
           <div className="card__back__content__title">{destination.title}</div>
           <div className="card__back__content__subtitle">{destination.type}</div>
           {destination.info && (showInfoList(destination.info))}
+          <button className="card__back__content__button">Szczegóły</button>
         </div>
       </div>
     </div>
