@@ -1,0 +1,32 @@
+.mapContainer {
+  position: relative;
+  height: 480px;
+  width: 600px;
+
+  &__loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 15px;
+  }
+
+  &__map {
+    border: none;
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    transition: opacity 1s ease-in;
+
+    &--show {
+      opacity: 1;
+    }
+  }
+}
